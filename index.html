@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base target="_self">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hogwarts School of Witchcraft and Wizardry</title>
+    <meta name="description" content="Official website of Hogwarts School of Witchcraft and Wizardry - Register for the magical school year">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'gryffindor-red': '#740001',
+                        'gryffindor-gold': '#D3A625',
+                        'slytherin-green': '#1A472A',
+                        'slytherin-silver': '#5D5D5D',
+                        'ravenclaw-blue': '#0E1A40',
+                        'ravenclaw-bronze': '#946B2D',
+                        'hufflepuff-yellow': '#FFDB00',
+                        'hufflepuff-black': '#000000',
+                        'hogwarts-purple': '#2C003E',
+                        'hogwarts-gold': '#C0A050'
+                    },
+                    fontFamily: {
+                        'cinzel': ['Cinzel', 'serif'],
+                        'cormorant': ['Cormorant Garamond', 'serif']
+                    },
+                    backgroundImage: {
+                        'hogwarts-bg': "url('https://picsum.photos/1920/1080?random=100')",
+                        'parchment': "url('https://picsum.photos/800/600?random=101')"
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .parchment-texture {
+            background-image: url('https://picsum.photos/800/600?random=102');
+            background-size: cover;
+            background-position: center;
+        }
+        .house-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .house-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        .magic-border {
+            border: 2px solid transparent;
+            background: linear-gradient(45deg, #2C003E, #C0A050) border-box;
+            border-radius: 8px;
+        }
+        .profile-image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 50%;
+            border: 3px solid #C0A050;
+            box-shadow: 0 0 15px rgba(192, 160, 80, 0.5);
+        }
+        .profile-image-container:hover::after {
+            content: 'Change Photo';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(44, 0, 62, 0.8);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cormorant', serif;
+            font-weight: 500;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white font-cormorant">
+    <!-- Header with Logo and Navigation -->
+    <header class="sticky top-0 z-50 bg-hogwarts-purple/90 backdrop-blur-sm shadow-lg">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                    <div class="w-16 h-16 rounded-full bg-gradient-to-br from-hogwarts-gold to-hogwarts-purple p-1">
+                        <div class="w-full h-full rounded-full bg-black flex items-center justify-center">
+                            <i class="fas fa-hat-wizard text-3xl text-hogwarts-gold"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl md:text-3xl font-cinzel font-bold text-hogwarts-gold">Hogwarts</h1>
+                        <p class="text-sm text-gray-300 font-cormorant">School of Witchcraft & Wizardry</p>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <nav class="flex flex-wrap gap-4">
+                    <a href="#home" class="px-4 py-2 rounded-lg hover:bg-hogwarts-gold/20 hover:text-hogwarts-gold transition-colors" onclick="event.preventDefault(); scrollToSection('home')">Home</a>
+                    <a href="#registration" class="px-4 py-2 rounded-lg hover:bg-hogwarts-gold/20 hover:text-hogwarts-gold transition-colors" onclick="event.preventDefault(); scrollToSection('registration')">Registration</a>
+                    <a href="#houses" class="px-4 py-2 rounded-lg hover:bg-hogwarts-gold/20 hover:text-hogwarts-gold transition-colors" onclick="event.preventDefault(); scrollToSection('houses')">Houses</a>
+                    <a href="#profile" class="px-4 py-2 rounded-lg hover:bg-hogwarts-gold/20 hover:text-hogwarts-gold transition-colors" onclick="event.preventDefault(); scrollToSection('profile')">My Profile</a>
+                    <a href="#groups" class="px-4 py-2 rounded-lg hover:bg-hogwarts-gold/20 hover:text-hogwarts-gold transition-colors" onclick="event.preventDefault(); scrollToSection('groups')">House Groups</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="relative min-h-[70vh] flex items-center justify-center parchment-texture">
+            <div class="absolute inset-0 bg-black/50"></div>
+            <div class="relative z-10 container mx-auto px-4 text-center">
+                <h2 class="text-4xl md:text-6xl font-cinzel font-bold text-hogwarts-gold mb-6">Welcome to Hogwarts</h2>
+                <p class="text-xl md:text-2xl text-gray-200 mb-8 max-w-3xl mx-auto">
+                    "Draco Dormiens Nunquam Titillandus"<br>
+                    (Never Tickle a Sleeping Dragon)
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button onclick="scrollToSection('registration')" class="px-8 py-3 bg-gradient-to-r from-hogwarts-purple to-hogwarts-gold text-white rounded-lg font-cinzel font-bold hover:opacity-90 transition-opacity">
+                        Start Your Journey
+                    </button>
+                    <button onclick="scrollToSection('houses')" class="px-8 py-3 border-2 border-hogwarts-gold text-hogwarts-gold rounded-lg font-cinzel font-bold hover:bg-hogwarts-gold/10 transition-colors">
+                        Explore Houses
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Registration Section -->
+        <section id="registration" class="py-16 bg-gradient-to-b from-gray-800 to-gray-900">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-cinzel font-bold text-center text-hogwarts-gold mb-12">School Registration</h2>
+                
+                <div class="max-w-2xl mx-auto bg-gray-800/50 rounded-xl p-6 md:p-8 magic-border">
+                    <div class="text-center mb-8">
+                        <i class="fas fa-scroll text-5xl text-hogwarts-gold mb-4"></i>
+                        <h3 class="text-2xl font-cinzel text-white mb-2">Free School Registration</h3>
+                        <p class="text-gray-300">Join Hogwarts and begin your magical education</p>
+                    </div>
+
+                    <form id="registrationForm" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-gray-300 mb-2">Full Name</label>
+                                <input type="text" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-hogwarts-gold" placeholder="Enter your full name" required>
+                            </div>
+                            <div>
+                                <label class="block text-gray-300 mb-2">Date of Birth</label>
+                                <input type="date" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-hogwarts-gold" required>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-gray-300 mb-2">Magical Blood Status</label>
+                            <select class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-hogwarts-gold">
+                                <option value="">Select your blood status</option>
+                                <option value="pure-blood">Pure-blood</option>
+                                <option value="half-blood">Half-blood</option>
+                                <option value="muggle-born">Muggle-born</option>
+                                <option value="squib">Squib</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-gray-300 mb-2">Preferred House</label>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="radio" name="house" value="gryffindor" class="text-gryffindor-red">
+                                    <span class="text-gray-300">Gryffindor</span>
+                                </label>
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="radio" name="house" value="slytherin" class="text-slytherin-green">
+                                    <span class="text-gray-300">Slytherin</span>
+                                </label>
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="radio" name="house" value="ravenclaw" class="text-ravenclaw-blue">
+                                    <span class="text-gray-300">Ravenclaw</span>
+                                </label>
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="radio" name="house" value="hufflepuff" class="text-hufflepuff-yellow">
+                                    <span class="text-gray-300">Hufflepuff</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-gray-300 mb-2">Magical Interests</label>
+                            <div class="flex flex-wrap gap-3">
+                                <label class="flex items-center space-x-2">
+                                    <input type="checkbox" class="text-hogwarts-gold">
+                                    <span class="text-gray-300">Potions</span>
+                                </label>
+                                <label class="flex items-center space-x-2">
+                                    <input type="checkbox" class="text-hogwarts-gold">
+                                    <span class="text-gray-300">Charms</span>
+                                </label>
+                                <label class="flex items-center space-x-2">
+                                    <input type="checkbox" class="text-hogwarts-gold">
+                                    <span class="text-gray-300">Transfiguration</span>
+                                </label>
+                                <label class="flex items-center space-x-2">
+                                    <input type="checkbox" class="text-hogwarts-gold">
+                                    <span class="text-gray-300">Defense Against Dark Arts</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="pt-4">
+                            <button type="submit" class="w-full py-4 bg-gradient-to-r from-hogwarts-purple to-hogwarts-gold text-white rounded-lg font-cinzel font-bold text-lg hover:opacity-90 transition-opacity">
+                                Complete Registration
+                            </button>
+                            <p class="text-center text-gray-400 mt-4 text-sm">
+                                Registration is completely free. You will receive your acceptance letter via owl post.
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Houses Section -->
+        <section id="houses" class="py-16 bg-gradient-to-b from-gray-900 to-black">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-cinzel font-bold text-center text-hogwarts-gold mb-12">The Four Houses</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Gryffindor -->
+                    <div class="house-card bg-gradient-to-b from-gryffindor-red/20 to-gryffindor-gold/10 rounded-xl p-6 border border-gryffindor-gold/30">
+                        <div class="flex items-center justify-center w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-gryffindor-red to-gryffindor-gold">
+                            <i class="fas fa-lion text-3xl text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-cinzel font-bold text-gryffindor-gold text-center mb-4">Gryffindor</h3>
+                        <p class="text-gray-300 text-center mb-6">
+                            "Where dwell the brave at heart, Their daring, nerve, and chivalry Set Gryffindors apart."
+                        </p>
+                        <div class="text-center">
+                            <span class="inline-block px-4 py-2 bg-gryffindor-red text-gryffindor-gold rounded-lg font-cinzel">
+                                Courage • Bravery • Nerve
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Slytherin -->
+                    <div class="house-card bg-gradient-to-b from-slytherin-green/20 to-slytherin-silver/10 rounded-xl p-6 border border-slytherin-silver/30">
+                        <div class="flex items-center justify-center w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-slytherin-green to-slytherin-silver">
+                            <i class="fas fa-serpent text-3xl text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-cinzel font-bold text-slytherin-silver text-center mb-4">Slytherin</h3>
+                        <p class="text-gray-300 text-center mb-6">
+                            "Those cunning folk use any means, To achieve their ends."
+                        </p>
+                        <div class="text-center">
+                            <span class="inline-block px-4 py-2 bg-slytherin-green text-slytherin-silver rounded-lg font-cinzel">
+                                Ambition • Cunning • Resourcefulness
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Ravenclaw -->
+                    <div class="house-card bg-gradient-to-b from-ravenclaw-blue/20 to-ravenclaw-bronze/10 rounded-xl p-6 border border-ravenclaw-bronze/30">
+                        <div class="flex items-center justify-center w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-ravenclaw-blue to-ravenclaw-bronze">
+                            <i class="fas fa-eagle text-3xl text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-cinzel font-bold text-ravenclaw-bronze text-center mb-4">Ravenclaw</h3>
+                        <p class="text-gray-300 text-center mb-6">
+                            "Wit beyond measure is man's greatest treasure."
+                        </p>
+                        <div class="text-center">
+                            <span class="inline-block px-4 py-2 bg-ravenclaw-blue text-ravenclaw-bronze rounded-lg font-cinzel">
+                                Intelligence • Creativity • Learning
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Hufflepuff -->
+                    <div class="house-card bg-gradient-to-b from-hufflepuff-yellow/20 to-hufflepuff-black/10 rounded-xl p-6 border border-hufflepuff-yellow/30">
+                        <div class="flex items-center justify-center w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-hufflepuff-yellow to-hufflepuff-black">
+                            <i class="fas fa-badger text-3xl text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-cinzel font-bold text-hufflepuff-yellow text-center mb-4">Hufflepuff</h3>
+                        <p class="text-gray-300 text-center mb-6">
+                            "They are just and loyal, Those patient Hufflepuffs are true, And unafraid of toil."
+                        </p>
+                        <div class="text-center">
+                            <span class="inline-block px-4 py-2 bg-hufflepuff-black text-hufflepuff-yellow rounded-lg font-cinzel">
+                                Loyalty • Patience • Fairness
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-12 text-center">
+                    <p class="text-xl text-gray-300 mb-6">
+                        "The Sorting Hat will place you in the house that suits you best. Remember, it's not our abilities that show what we truly are, it is our choices."
+                    </p>
+                    <button onclick="showSortingHat()" class="px-8 py-3 bg-gradient-to-r from-hogwarts-purple to-hogwarts-gold text-white rounded-lg font-cinzel font-bold hover:opacity-90 transition-opacity">
+                        Take Sorting Quiz
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Profile Section -->
+        <section id="profile" class="py-16 bg-gradient-to-b from-gray-800 to-gray-900">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-cinzel font-bold text-center text-hogwarts-gold mb-12">My Magical Profile</h2>
+                
+                <div class="max-w-4xl mx-auto">
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                        <!-- Profile Picture Section -->
+                        <div class="lg:col-span-1">
+                            <div class="bg-gray-800/50 rounded-xl p-6 magic-border">
+                                <h3 class="text-2xl font-cinzel text-hogwarts-gold mb-6 text-center">Profile Picture</h3>
+                                
+                                <div class="flex flex-col items-center">
+                                    <div class="profile-image-container w-48 h-48 mb-6">
+                                        <img id="profileImage" src="https://picsum.photos/300?random=200" alt="Student profile picture" class="w-full h-full object-cover rounded-full">
+                                    </div>
+                                    
+                                    <div class="space-y-4 w-full">
+                                        <input type="file" id="imageUpload" accept="image/*" class="hidden" onchange="handleImageUpload(event)">
+                                        <button onclick="document.getElementById('imageUpload').click()" class="w-full py-3 bg-gradient-to-r from-hogwarts-purple to-hogwarts-gold text-white rounded-lg font-cinzel font-bold hover:opacity-90 transition-opacity">
+                                            <i class="fas fa-camera mr-2"></i>Upload Photo
+                                        </button>
+                                        
+                                        <button onclick="takePhoto()" class="w-full py-3 border-2 border-hogwarts-gold text-hogwarts-gold rounded-lg font-cinzel font-bold hover:bg-hogwarts-gold/10 transition-colors">
+                                            <i class="fas fa-mobile-alt mr-2"></i>Take Photo
+                                        </button>
+                                    </div>
+                                    
+                                    <p class="text-gray-400 text-sm mt-6 text-center">
+                                        Upload a photo from your device or take one with your camera
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Profile Information -->
+                        <div class="lg:col-span-2">
+                            <div class="bg-gray-800/50 rounded-xl p-6 magic-border">
+                                <h3 class="text-2xl font-cinzel text-hogwarts-gold mb-6">Personal Information</h3>
+                                
+                                <form id="profileForm" class="space-y-6">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div>
+                                            <label class="block text-gray-300 mb-2">Full Name</label>
+                                            <input type="text" id="studentName" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-hogwarts-gold" value="Harry Potter" onchange="updateProfileName()">
+                                        </div>
+                                        <div>
+                                            <label class="block text-gray-300 mb-2">Wand Number</label>
+                                            <input type="text" id="wandNumber" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-hogwarts-gold" placeholder="Enter your wand number">
+                                        </div>
+                                    </div>
+
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div>
+                                            <label class="block text-gray-300 mb-2">Phone Number</label>
+                                            <input type="tel" id="phoneNumber" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-hogwarts-gold" placeholder="+44 7911 123456" onchange="updatePhoneNumber()">
+                                        </div>
+                                        <div>
+                                            <label class="block text-gray-300 mb-2">House</label>
+                                            <div class="relative">
+                                                <select id="houseSelection" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-hogwarts-gold appearance-none" onchange="updateHouse()">
+                                                    <option value="gryffindor">Gryffindor</option>
+                                                    <option value="slytherin">Slytherin</option>
+                                                    <option value="ravenclaw">Ravenclaw</option>
+                                                    <option value="hufflepuff">Hufflepuff</option>
+                                                </select>
+                                                <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                                                    <i class="fas fa-chevron-down text-gray-400"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-gray-300 mb-2">Magical Biography</label>
+                                        <textarea id="bio" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-hogwarts-gold h-32" placeholder="Tell us about your magical journey..."></textarea>
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-gray-300 mb-2">Favorite Subjects</label>
+                                        <div class="flex flex-wrap gap-3">
+                                            <label class="flex items-center space-x-2">
+                                                <input type="checkbox" class="text-hogwarts-gold" checked>
+                                                <span class="text-gray-300">Defense Against Dark Arts</span>
+                                            </label>
+                                            <label class="flex items-center space-x-2">
+                                                <input type="checkbox" class="text-hogwarts-gold">
+                                                <span class="text-gray-300">Potions</span>
+                                            </label>
+                                            <label class="flex items-center space-x-2">
+                                                <input type="checkbox" class="text-hogwarts-gold">
+                                                <span class="text-gray-300">Charms</span>
+                                            </label>
+                                            <label class="flex items-center space-x-2">
+                                                <input type="checkbox" class="text-hogwarts-gold">
+                                                <span class="text-gray-300">Transfiguration</span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="pt-4">
+                                        <button type="submit" class="w-full py-4 bg-gradient-to-r from-hogwarts-purple to-hogwarts-gold text-white rounded-lg font-cinzel font-bold text-lg hover:opacity-90 transition-opacity">
+                                            Save Profile Changes
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <!-- Current Profile Info -->
+                            <div class="mt-8 bg-gray-800/50 rounded-xl p-6 magic-border">
+                                <h3 class="text-xl font-cinzel text-hogwarts-gold mb-4">Current Profile Information</h3>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <p class="text-gray-400 text-sm">Name:</p>
+                                        <p id="currentName" class="text-white font-semibold">Harry Potter</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-400 text-sm">Phone:</p>
+                                        <p id="currentPhone" class="text-white font-semibold">+44 7911 123456</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-400 text-sm">House:</p>
+                                        <p id="currentHouse" class="text-white font-semibold">Gryffindor</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-400 text-sm">Wand Number:</p>
+                                        <p id="currentWand" class="text-white font-semibold">Not set</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- House Groups Section -->
+        <section id="groups" class="py-16 bg-gradient-to-b from-gray-900 to-black">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-cinzel font-bold text-center text-hogwarts-gold mb-12">House Groups</h2>
+                
+                <div class="max-w-6xl mx-auto">
+                    <!-- Group Selection -->
+                    <div class="mb-12">
+                        <h3 class="text-2xl font-cinzel text-white mb-6 text-center">Select Your House Group</h3>
+                        <p class="text-gray-300 text-center mb-8 max-w-2xl mx-auto">
+                            Each student can only join their own house group. Group admins manage their respective house groups.
+                        </p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                            <div class="group-card bg-gradient-to-b from-gryffindor-red/20 to-transparent rounded-xl p-6 border border-gryffindor-gold/30 cursor-pointer hover:from-gryffindor-red/30 transition-all" onclick="selectHouseGroup('gryffindor')">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h4 class="text-xl font-cinzel text-gryffindor-gold">Gryffindor Group</h4>
+                                    <i class="fas fa-lock text-gryffindor-gold"></i>
+                                </div>
+                                <p class="text-gray-300 text-sm mb-4">Only Gryffindor students can access this group</p>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-gryffindor-gold">45 Members</span>
+                                    <span class="text-gray-400 text-sm">Admin: Prof. McGonagall</span>
+                                </div>
+                            </div>
+
+                            <div class="group-card bg-gradient-to-b from-slytherin-green/20 to-transparent rounded-xl p-6 border border-slytherin-silver/30 cursor-pointer hover:from-slytherin-green/30 transition-all" onclick="selectHouseGroup('slytherin')">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h4 class="text-xl font-cinzel text-slytherin-silver">Slytherin Group</h4>
+                                    <i class="fas fa-lock text-slytherin-silver"></i>
+                                </div>
+                                <p class="text-gray-300 text-sm mb-4">Only Slytherin students can access this group</p>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-slytherin-silver">38 Members</span>
+                                    <span class="text-gray-400 text-sm">Admin: Prof. Snape</span>
+                                </div>
+                            </div>
+
+                            <div class="group-card bg-gradient-to-b from-ravenclaw-blue/20 to-transparent rounded-xl p-6 border border-ravenclaw-bronze/30 cursor-pointer hover:from-ravenclaw-blue/30 transition-all" onclick="selectHouseGroup('ravenclaw')">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h4 class="text-xl font-cinzel text-ravenclaw-bronze">Ravenclaw Group</h4>
+                                    <i class="fas fa-lock text-ravenclaw-bronze"></i>
+                                </div>
+                                <p class="text-gray-300 text-sm mb-4">Only Ravenclaw students can access this group</p>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-ravenclaw-bronze">42 Members</span>
+                                    <span class="text-gray-400 text-sm">Admin: Prof. Flitwick</span>
+                                </div>
+                            </div>
+
+                            <div class="group-card bg-gradient-to-b from-hufflepuff-yellow/20 to-transparent rounded-xl p-6 border border-hufflepuff-yellow/30 cursor-pointer hover:from-hufflepuff-yellow/30 transition-all" onclick="selectHouseGroup('hufflepuff')">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h4 class="text-xl font-cinzel text-hufflepuff-yellow">Hufflepuff Group</h4>
+                                    <i class="fas fa-lock text-hufflepuff-yellow"></i>
+                                </div>
+                                <p class="text-gray-300 text-sm mb-4">Only Hufflepuff students can access this group</p>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-hufflepuff-yellow">40 Members</span>
+                                    <span class="text-gray-400 text-sm">Admin: Prof. Sprout</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Selected Group Chat -->
+                    <div id="groupChat" class="hidden">
+                        <div class="bg-gray-800/50 rounded-xl p-6 magic-border">
+                            <div class="flex items-center justify-between mb-6">
+                                <div>
+                                    <h3 id="selectedGroupName" class="text-2xl font-cinzel text-white"></h3>
+                                    <p id="selectedGroupInfo" class="text-gray-300"></p>
+                                </div>
+                                <div class="flex items-center space-x-4">
+                                    <span id="memberCount" class="text-hogwarts-gold"></span>
+                                    <span class="text-gray-400">|</span>
+                                    <span id="adminName" class="text-gray-300"></span>
+                                </div>
+                            </div>
+
+                            <!-- Chat Messages -->
+                            <div id="chatMessages" class="h-96 overflow-y-auto mb-6 space-y-4 p-4 bg-gray-900/50 rounded-lg">
+                                <!-- Messages will be loaded here -->
+                            </div>
+
+                            <!-- Message Input -->
+                            <div class="flex space-x-4">
+                                <input type="text" id="messageInput" placeholder="Type your message here..." class="flex-1 px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-hogwarts-gold">
+                                <button onclick="sendMessage()" class="px-6 py-3 bg-gradient-to-r from-hogwarts-purple to-hogwarts-gold text-white rounded-lg font-cinzel font-bold hover:opacity-90 transition-opacity">
+                                    Send
+                                </button>
+                            </div>
+
+                            <!-- Group Rules -->
+                            <div class="mt-6 pt-6 border-t border-gray-700">
+                                <h4 class="text-lg font-cinzel text-hogwarts-gold mb-3">Group Rules</h4>
+                                <ul class="text-gray-300 space-y-2 text-sm">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-shield-alt text-hogwarts-gold mr-2 mt-1"></i>
+                                        <span>Only members of this house can access the group</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-user-shield text-hogwarts-gold mr-2 mt-1"></i>
+                                        <span>Only the house head (admin) can manage group settings</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-comments text-hogwarts-gold mr-2 mt-1"></i>
+                                        <span>Be respectful in all communications</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-lock text-hogwarts-gold mr-2 mt-1"></i>
+                                        <span>No sharing of group access with other houses</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- No Group Selected Message -->
+                    <div id="noGroupSelected" class="text-center py-12">
+                        <i class="fas fa-door-closed text-6xl text-hogwarts-gold mb-6"></i>
+                        <h3 class="text-2xl font-cinzel text-white mb-4">Select Your House Group</h3>
+                        <p class="text-gray-300 max-w-2xl mx-auto mb-8">
+                            Choose your house group above to start chatting with fellow house members. 
+                            Remember, you can only access your own house group - the Sorting Hat's decision is final!
+                        </p>
+                        <div class="inline-flex items-center space-x-2 text-hogwarts-gold">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span>Your current house: <span id="currentHouseDisplay" class="font-bold">Gryffindor</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-hogwarts-purple py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-hogwarts-gold to-hogwarts-purple p-1">
+                            <div class="w-full h-full rounded-full bg-black flex items-center justify-center">
+                                <i class="fas fa-hat-wizard text-xl text-hogwarts-gold"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-cinzel font-bold text-hogwarts-gold">Hogwarts</h3>
+                            <p class="text-sm text-gray-300">Established c. 993</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400">
+                        Hogwarts School of Witchcraft and Wizardry<br>
+                        Highlands, Scotland<br>
+                        United Kingdom
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-cinzel text-hogwarts-gold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-300 hover:text-hogwarts-gold transition-colors" onclick="event.preventDefault(); scrollToSection('home')">Home</a></li>
+                        <li><a href="#registration" class="text-gray-300 hover:text-hogwarts-gold transition-colors" onclick="event.preventDefault(); scrollToSection('registration')">Registration</a></li>
+                        <li><a href="#houses" class="text-gray-300 hover:text-hogwarts-gold transition-colors" onclick="event.preventDefault(); scrollToSection('houses')">Houses</a></li>
+                        <li><a href="#profile" class="text-gray-300 hover:text-hogwarts-gold transition-colors" onclick="event.preventDefault(); scrollToSection('profile')">Profile</a></li>
+                        <li><a href="#groups" class="text-gray-300 hover:text-hogwarts-gold transition-colors" onclick="event.preventDefault(); scrollToSection('groups')">House Groups</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-cinzel text-hogwarts-gold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li class="flex items-center space-x-2">
+                            <i class="fas fa-owl text-hogwarts-gold"></i>
+                            <span>Owl Post: Send via any magical owl</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i class="fas fa-floo-powder text-hogwarts-gold"></i>
+                            <span>Floo Network: "Hogwarts Headmaster's Office"</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i class="fas fa-portal-enter text-hogwarts-gold"></i>
+                            <span>Platform 9¾, King's Cross Station</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-12 pt-8 border-t border-hogwarts-gold/20">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-sm mb-4 md:mb-0">
+                        © 2024 Hogwarts School of Witchcraft and Wizardry. All magical rights reserved.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-300 hover:text-hogwarts-gold transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-hogwarts-gold transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-hogwarts-gold transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-hogwarts-gold transition-colors">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Define data at the beginning
+        const housesData = {
+            "gryffindor": {
+                "name": "Gryffindor",
+                "color": "#D3A625",
+                "admin": "Prof. McGonagall",
+                "members": 45,
+                "messages": [
+                    { "sender": "Harry Potter", "text": "Anyone up for Quidditch practice tomorrow?", "time": "2 hours ago" },
+                    { "sender": "Hermione Granger", "text": "Don't forget about the Charms essay due next week!", "time": "1 hour ago" },
+                    { "sender": "Ron Weasley", "text": "Great game today, Harry! That was an amazing save!", "time": "30 minutes ago" }
+                ]
+            },
+            "slytherin": {
+                "name": "Slytherin",
+                "color": "#5D5D5D",
+                "admin": "Prof. Snape",
+                "members": 38,
+                "messages": [
+                    { "sender": "Draco Malfoy", "text": "Potter thinks he's so great at Quidditch...", "time": "3 hours ago" },
+                    { "sender": "Pansy Parkinson", "text": "Did you see the new Potions assignment?", "time": "2 hours ago" },
+                    { "sender": "Blaise Zabini", "text": "Common room meeting at 8 PM tonight", "time": "1 hour ago" }
+                ]
+            },
+            "ravenclaw": {
+                "name": "Ravenclaw",
+                "color": "#946B2D",
+                "admin": "Prof. Flitwick",
+                "members": 42,
+                "messages": [
+                    { "sender": "Luna Lovegood", "text": "I saw a Crumple-Horned Snorkack near the lake!", "time": "4 hours ago" },
+                    { "sender": "Cho Chang", "text": "Study group for Arithmancy tomorrow in the library", "time": "3 hours ago" },
+                    { "sender": "Padma Patil", "text": "Has anyone finished the Transfiguration reading?", "time": "2 hours ago" }
+                ]
+            },
+            "hufflepuff": {
+                "name": "Hufflepuff",
+                "color": "#FFDB00",
+                "admin": "Prof. Sprout",
+                "members": 40,
+                "messages": [
+                    { "sender": "Cedric Diggory", "text": "Great work in Herbology today everyone!", "time": "5 hours ago" },
+                    { "sender": "Hannah Abbott", "text": "Baking cookies in the common room tonight!", "time": "4 hours ago" },
+                    { "sender": "Susan Bones", "text": "Don't forget to water your Mandrakes", "time": "3 hours ago" }
+                ]
+            }
+        };
+
+        let currentUser = {
+            "name": "Harry Potter",
+            "phone": "+44 7911 123456",
+            "house": "gryffindor",
+            "wandNumber": "",
+            "profileImage": "https://picsum.photos/300?random=200"
+        };
+
+        let selectedHouseGroup = null;
+
+        // Navigation function
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Profile update functions
+        function updateProfileName() {
+            const nameInput = document.getElementById('studentName');
+            const currentName = document.getElementById('currentName');
+            if (nameInput && currentName) {
+                currentUser.name = nameInput.value;
+                currentName.textContent = nameInput.value;
+            }
+        }
+
+        function updatePhoneNumber() {
+            const phoneInput = document.getElementById('phoneNumber');
+            const currentPhone = document.getElementById('currentPhone');
+            if (phoneInput && currentPhone) {
+                currentUser.phone = phoneInput.value;
+                currentPhone.textContent = phoneInput.value;
+            }
+        }
+
+        function updateHouse() {
+            const houseSelect = document.getElementById('houseSelection');
+            const currentHouse = document.getElementById('currentHouse');
+            const currentHouseDisplay = document.getElementById('currentHouseDisplay');
+            if (houseSelect && currentHouse && currentHouseDisplay) {
+                currentUser.house = houseSelect.value;
+                const houseName = houseSelect.options[houseSelect.selectedIndex].text;
+                currentHouse.textContent = houseName;
+                currentHouseDisplay.textContent = houseName;
+            }
+        }
+
+        function handleImageUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const profileImage = document.getElementById('profileImage');
+                    if (profileImage) {
+                        profileImage.src = e.target.result;
+                        currentUser.profileImage = e.target.result;
+                    }
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function takePhoto() {
+            alert("Camera functionality would be implemented here. For now, please upload a photo from your device.");
+        }
+
+        // House group functions
+        function selectHouseGroup(house) {
+            if (currentUser.house !== house) {
+                alert("You can only access your own house group! The Sorting Hat has placed you in " + 
+                      housesData[currentUser.house].name + ". You cannot access the " + 
+                      housesData[house].name + " group.");
+                return;
+            }
+
+            selectedHouseGroup = house;
+            const groupData = housesData[house];
+            
+            // Update group info display
+            document.getElementById('selectedGroupName').textContent = groupData.name + " Group";
+            document.getElementById('selectedGroupInfo').textContent = "Private group for " + groupData.name + " students only";
+            document.getElementById('memberCount').textContent = groupData.members + " Members";
+            document.getElementById('adminName').textContent = "Admin: " + groupData.admin;
+            
+            // Update current house display
+            document.getElementById('currentHouseDisplay').textContent = groupData.name;
+            
+            // Show chat and hide selection message
+            document.getElementById('groupChat').classList.remove('hidden');
+            document.getElementById('noGroupSelected').classList.add('hidden');
+            
+            // Load messages
+            loadGroupMessages(house);
+        }
+
+        function loadGroupMessages(house) {
+            const chatMessages = document.getElementById('chatMessages');
+            if (!chatMessages) return;
+            
+            chatMessages.innerHTML = '';
+            const messages = housesData[house].messages;
+            
+            messages.forEach(message => {
+                const messageElement = document.createElement('div');
+                messageElement.className = 'bg-gray-800/50 rounded-lg p-4';
+                messageElement.innerHTML = `
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="font-cinzel font-bold" style="color: ${housesData[house].color}">${message.sender}</span>
+                        <span class="text-gray-400 text-sm">${message.time}</span>
+                    </div>
+                    <p class="text-gray-300">${message.text}</p>
+                `;
+                chatMessages.appendChild(messageElement);
+            });
+            
+            // Scroll to bottom
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function sendMessage() {
+            const messageInput = document.getElementById('messageInput');
+            const chatMessages = document.getElementById('chatMessages');
+            
+            if (!messageInput || !chatMessages || !selectedHouseGroup || !messageInput.value.trim()) return;
+            
+            const newMessage = {
+                sender: currentUser.name,
+                text: messageInput.value,
+                time: "Just now"
+            };
+            
+            // Add to messages array
+            housesData[selectedHouseGroup].messages.push(newMessage);
+            
+            // Add to chat display
+            const messageElement = document.createElement('div');
+            messageElement.className = 'bg-gray-800/50 rounded-lg p-4';
+            messageElement.innerHTML = `
+                <div class="flex justify-between items-start mb-2">
+                    <span class="font-cinzel font-bold" style="color: ${housesData[selectedHouseGroup].color}">${newMessage.sender}</span>
+                    <span class="text-gray-400 text-sm">${newMessage.time}</span>
+                </div>
+                <p class="text-gray-300">${newMessage.text}</p>
+            `;
+            chatMessages.appendChild(messageElement);
+            
+            // Clear input and scroll to bottom
+            messageInput.value = '';
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function showSortingHat() {
+            const houses = ['Gryffindor', 'Slytherin', 'Ravenclaw', 'Hufflepuff'];
+            const randomHouse = houses[Math.floor(Math.random() * houses.length)];
+            
+            alert(`The Sorting Hat says: "Hmm... difficult. Very difficult.\n\nI sense great courage in you... but also ambition...\n\nAh! I know just where to put you!\n\nBetter be... ${randomHouse}!`);
+            
+            // Update house selection
+            const houseSelect = document.getElementById('houseSelection');
+            const houseDisplay = document.getElementById('currentHouseDisplay');
+            const currentHouse = document.getElementById('currentHouse');
+            
+            if (houseSelect && houseDisplay && currentHouse) {
+                houseSelect.value = randomHouse.toLowerCase();
+                houseDisplay.textContent = randomHouse;
+                currentHouse.textContent = randomHouse;
+                currentUser.house = randomHouse.toLowerCase();
+            }
+        }
+
+        // Form submission handlers
+        document.getElementById('registrationForm')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Registration submitted successfully! You will receive your acceptance letter via owl post within 7 days.');
+        });
+
+        document.getElementById('profileForm')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Profile updated successfully! Your changes have been saved.');
+        });
+
+        // Initialize current house display
+        document.addEventListener('DOMContentLoaded', function() {
+            const houseSelect = document.getElementById('houseSelection');
+            const currentHouseDisplay = document.getElementById('currentHouseDisplay');
+            const currentHouse = document.getElementById('currentHouse');
+            
+            if (houseSelect && currentHouseDisplay && currentHouse) {
+                const selectedHouse = houseSelect.options[houseSelect.selectedIndex].text;
+                currentHouseDisplay.textContent = selectedHouse;
+                currentHouse.textContent = selectedHouse;
+            }
+            
+            // Update wand number display
+            const wandInput = document.getElementById('wandNumber');
+            const currentWand = document.getElementById('currentWand');
+            if (wandInput && currentWand) {
+                wandInput.addEventListener('change', function() {
+                    currentWand.textContent = this.value || 'Not set';
+                    currentUser.wandNumber = this.value;
+                });
+            }
+        });
+    </script>
+</body>
+</html>
